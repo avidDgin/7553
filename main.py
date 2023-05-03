@@ -13,4 +13,6 @@ bootstrap = Bootstrap5(app)
 def home():
     return render_template('index.html')
 
-
+@app.route('/imageManip')
+def imageManip():
+    return render_template('imageManip.html')
