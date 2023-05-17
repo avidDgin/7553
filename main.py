@@ -1,8 +1,7 @@
 #Main python file
 #Sources: https://www.geeksforgeeks.org/convert-mp3-to-wav-using-python/
 
-
-# import audio.py
+from audio import get_freq
 from PIL import Image
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap5
@@ -25,6 +24,11 @@ def manip():
 
 @app.route('/audio')
 def audio():
+
+    #Opening and executing audio file
+    with open("audio.py") as f:
+        exec(f.read())
+
     return render_template('audio.html')
 
 @app.route('/imageManip')
