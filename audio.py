@@ -5,7 +5,7 @@ from scipy.io import wavfile as wav
 import numpy as np
 from PIL import Image 
 
-rate, data = wav.read('toImage3.wav')
+rate, data = wav.read('test1.wav')
 
 duration = 1.0 # 1s chunk includes delimiting 5ms 1600hz tone
 chunk = int(rate * duration) # calculate the length of our chunk in the np.array using sample rate
@@ -23,7 +23,7 @@ def get_freq(bit):
 
     # Find the peak in the coefficients
     idx = np.argmax(np.abs(w))
-    freq = freqs[idx]
+    freq = freqs[idx % 43880]
     freq_in_hertz = abs(freq * rate)
     return freq_in_hertz
 
@@ -31,7 +31,7 @@ def get_freq(bit):
 def build_image(freqs):
 
     sound_list = [round(num) for num in freqs]
-
+    sound_list = [num % 255 for num in sound_list]
     w = len(sound_list)
     h =  len(sound_list)
     sound_im = Image.new('RGB', (w,h))
@@ -50,5 +50,4 @@ def build_image(freqs):
 
 
 decoded_freqs = [get_freq(bit) for bit in range(bits)]
-print(decoded_freqs)
 build_image(decoded_freqs)
