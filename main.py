@@ -8,6 +8,8 @@
 # Keegan worked on the implementation of the UI on the flask website as well as 
 # the other routes, image manipulation and filtering, and navigation functionality.
 
+#Github: https://github.com/avidDgin/7553
+
 #Sources: https://www.geeksforgeeks.org/convert-mp3-to-wav-using-python/
 
 from audio import get_freq
