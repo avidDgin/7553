@@ -2,8 +2,11 @@
 CST 205 Project for Team 7553
 
 Audio to Image Conversion
+
 Authors: David Gin, Keegan Hunt, Andrea Ultreras, Ignacio Rodriguez
+
 CST 205
+
 5/17/2023
 
 How to Use:
