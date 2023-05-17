@@ -61,7 +61,7 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="filterDropdown">
                 {% for filter in filters %}
-                    <li><a class="dropdown-item" href="{{ url_for('display', selected_filter=filter) }}"> {{ filter }}</a></li>
+                    <li><a class="dropdown-item" href="{{ url_for('display', selected_filter=filter, image_id= image_info['id'] ) }}"> {{ filter }}</a></li>
                 {% endfor %}
             </ul>
         </div>
