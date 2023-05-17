@@ -1,4 +1,13 @@
 #Main python file
+# David Gin worked on the main python file, main index file UI and implementation of
+# combining the rest of the code in a way that it works when navigating from main flask application website.
+
+# Andrea & Ignacio worked on the audio python file and making the classes and implementation
+# function correctly with the audio files.
+
+# Keegan worked on the implementation of the UI on the flask website as well as 
+# the other routes, image manipulation and filtering, and navigation functionality.
+
 #Sources: https://www.geeksforgeeks.org/convert-mp3-to-wav-using-python/
 
 from audio import get_freq
@@ -25,7 +34,7 @@ def manip():
 @app.route('/audio')
 def audio():
 
-    #Opening and executing audio file
+    #Opening and executing audio file when clicked in the navigation bar
     with open("audio.py") as f:
         exec(f.read())
 
