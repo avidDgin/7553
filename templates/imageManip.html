@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filter Route</title>
+    {{ bootstrap.load_css() }}
+    <style>
+        body {
+            background-color: #343a40; /* Dark background color for the entire page */
+        }
+        .navbar {
+            text-align: center;
+        }
+        .navbar .navbar-nav {
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+        }
+        .navbar .navbar-nav .nav-item {
+            text-align: center;
+        }
+        .navbar .navbar-nav .nav-link {
+            color: #fff;
+            background-color: #007bff; /* Highlight color for the active link */
+            padding: 8px 12px;
+            border-radius: 4px;
+            margin: 0 8px; /* Add a small gap between the options */
+        }
+        .navbar .navbar-nav .nav-link:hover,
+        .navbar .navbar-nav .nav-link:focus {
+            background-color: #0056b3; /* Color when hovering over the link */
+        }
+        .container {
+            color: #fff;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 10px; /* Adjust the margin as needed for positioning */
+        }
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-container .image-item {
+            margin: 10px;
+            text-align: center;
+        }
+        .dropdown-container {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Apply Filters to pictures!</h1>
+    </div>
+    {% block content %}
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="navbar-nav">
+            <a class="nav-link" href="{{ url_for('home') }}">Home</a>
+            <a class="nav-link" href="{{ url_for('audio') }}">Convert Audio to Image</a>
+            <a class="nav-link" href="{{ url_for('imageManip') }}">Apply Filters</a>
+        </div>
+    </nav>
+    {% endblock %}
+
+    <div class="dropdown-container">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Select Filter
+            </button>
+            <div class="dropdown-menu" aria-labelledby="filterDropdown">
+                {% for filter in filters %}
+                    <a class="dropdown-item" href="#" onclick="selectFilter('{{ filter }}')">{{ filter }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+<div class="image-container">
+    {% for image in image_info %}
+        <div class="image-item">
+            <a style="text-decoration:none" href="{{ url_for('filter', image_id=image['id'], selected_filter='None') }}">
+                <h4>{{ image['title'] }}</h4>
+            </a>
+            <a href="{{ url_for('filter', image_id=image['id'], selected_filter='None') }}">
+                <img src="/static/images/{{ image['id'] }}.jpg" width="250" class="img-fluid rounded" alt="{{ image['id'] }}" />
+            </a>
+        </div>
+    {% endfor %}
+</div>
+
+<script>
+    let selectedFilter = 'None'; // Variable to store the selected filter
+
+    function selectFilter(filter) {
+        selectedFilter = filter; // Update the selected filter variable
+    }
+</script>
+
+{{ bootstrap.load_js() }}
+</body>
+</html>

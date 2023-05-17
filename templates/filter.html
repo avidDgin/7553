@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details Page</title>
+    {{ bootstrap.load_css() }}
+</head>
+<body>
+
+    <div class = "container">
+    
+        <h4>{{ image_info['title'] }} by {{ image_info['flickr_user'] }}</h4>
+        <img src = "/static/images/{{ image_info['id'] }}.jpg" width="500" class="img-fluid rounded" alt="{{ image_info['id'] }}" />
+        <!-- IMAGE INFO FROM PILLOW -->
+        <h6> {{im_mode}} image in {{im_format}} format with width {{ im_width }} and height {{ im_height }}. </h6> 
+        <br>
+        <a href="{{ url_for('home') }}">Back to list of images</a>
+    </div>
+
+    {{ bootstrap.load_js() }}
+</body>
+</html>
