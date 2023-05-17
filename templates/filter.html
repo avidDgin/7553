@@ -41,9 +41,8 @@
         }
     </style>
 </head>
-<body>
     <div class="container">
-        <h1>Home Page</h1>
+        <h1>Results!</h1>
     </div>
     {% block content %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -54,7 +53,29 @@
         </div>
     </nav>
     {% endblock %}
+
+    <div class="dropdown-container">
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                Select Filter
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+                {% for filter in filters %}
+                    <li><a class="dropdown-item" href="{{ url_for('display', selected_filter=filter) }}"> {{ filter }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class = "container">
     
+        <h4>{{ image_info['title'] }} by {{ image_info['flickr_user'] }}</h4>
+        <img src = "/static/images/{{ image_info['id'] }}.jpg" width="500" class="img-fluid rounded" alt="{{ image_info['id'] }}" />
+        <!-- IMAGE INFO FROM PILLOW -->
+        <h6> {{im_mode}} image in {{im_format}} format with width {{ im_width }} and height {{ im_height }}. </h6> 
+        <br>
+    </div>
+
     {{ bootstrap.load_js() }}
 </body>
 </html>

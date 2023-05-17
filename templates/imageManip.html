@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Image Conversion</title>
+    <title>Filter Route</title>
     {{ bootstrap.load_css() }}
     <style>
         body {
@@ -39,22 +39,50 @@
             text-align: center;
             margin-top: 10px; /* Adjust the margin as needed for positioning */
         }
+        .image-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+        }
+        .image-container .image-item {
+            margin: 10px;
+            text-align: center;
+        }
+        .dropdown-container {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Home Page</h1>
+        <h1>Apply Filters to pictures!</h1>
     </div>
     {% block content %}
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="navbar-nav">
             <a class="nav-link" href="{{ url_for('home') }}">Home</a>
-            <a class="nav-link" href="{{ url_for('audio') }}">Convert Audio to Image</a> 
+            <a class="nav-link" href="{{ url_for('audio') }}">Convert Audio to Image</a>
             <a class="nav-link" href="{{ url_for('imageManip') }}">Apply Filters</a>
         </div>
     </nav>
     {% endblock %}
+
+    <div class="image-container">
+        {% for image in image_info %}
+            <div class="image-item">
+                <a style="text-decoration:none" href="{{ url_for('filter', image_id=image['id']) }}">
+                    <h4>{{ image['title'] }}</h4>
+                </a>
+                <a href="{{ url_for('filter', image_id=image['id']) }}">
+                    <img src="/static/images/{{ image['id'] }}.jpg" width="250" class="img-fluid rounded" alt="{{ image['id'] }}" />
+                </a>
+            </div>
+        {% endfor %}
+    </div>
     
     {{ bootstrap.load_js() }}
+
+
 </body>
 </html>
