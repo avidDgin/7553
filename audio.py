@@ -5,7 +5,7 @@ from scipy.io import wavfile as wav
 import numpy as np
 from PIL import Image 
 
-rate, data = wav.read('newsong.wav')
+rate, data = wav.read('toImage3.wav')
 
 duration = 1.0 # 1s chunk includes delimiting 5ms 1600hz tone
 chunk = int(rate * duration) # calculate the length of our chunk in the np.array using sample rate
